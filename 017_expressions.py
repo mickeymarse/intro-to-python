@@ -96,12 +96,14 @@ add_one(add_one(add_one(add_one(add_one(add_one(1))))))
 # @TASK: What do you think that evaluates to? And why? Give
 # it a go and find out.
 
+# 7
+
 # @TASK: Play around with building complex expressions in
 # the space below.
 
 # EXPRESSIONS PLAYGROUND BEGINS
 
-
+add_one((add_one(2) - add_one(3)) + (add_one(5) * add_one(7)) - add_one(666))
 
 # EXPRESSIONS PLAYGROUND ENDS
 
