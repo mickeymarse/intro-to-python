@@ -30,19 +30,10 @@ print("")
 print("Function: report_long_words")
 
 def report_long_words(words):
-  def is_long_word(word):
-    return len(word) > 10 and not("-" in word)
-  long_words = list(filter(is_long_word, words))
+  
+  longest_words = list(map(lambda word: f"{word[0:15]}..." if len(word) > 15 else word, list(filter(lambda word: len(word) > 10 and not("-" in word), words))))
 
-  def is_too_long(word):
-    if len(word) > 15:
-      return f"{word[0:15]}..."
-    else:
-      return word
-  shortened_words = list(map(is_too_long, long_words))
-
-  stringified_list = ", ".join(shortened_words)
-  return f"These words are quite long: {stringified_list}"
+  return "These words are quite long: " + ", ".join(longest_words)
 
 check_that_these_are_equal(
   report_long_words([
