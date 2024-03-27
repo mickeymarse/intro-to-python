@@ -37,11 +37,7 @@ def play_game():
   while not is_game_over(board):
     print(print_board(board))
     print("It's " + player + "'s turn.")
-    # `input` asks the user to type in a string
-    # We then need to convert it to a number using `int`
-    row = int(input("Enter a row: "))
-    column = int(input("Enter a column: "))
-    board = make_move(board, row, column, player)
+    choose_tile(board, player)
     if player == "X":
       player = "O"
     else:
@@ -56,10 +52,22 @@ def print_board(board):
   grid = "\n".join(formatted_rows)
   return grid
 
-def make_move(board, row, column, player):
-  board[row][column] = player
-  return board
+# This function will pick the player chosen tile for the move
+def choose_tile(board, player):
+  # `input` asks the user to type in a string
+  # We then need to convert it to a number using `int`
+  row = int(input("Enter a row: "))
+  column = int(input("Enter a column: "))
+  board = make_move(board, row, column, player)
 
+# This function checks if the tile is free before making a move
+def make_move(board, row, column, player):
+  if not(board[row][column] == "."):
+    print("Tile occupied. Choose a different one.")
+    choose_tile(board, player)
+  else:
+    board[row][column] = player
+    return board
 
 # This function will extract three cells from the board
 def get_cells(board, coord_1, coord_2, coord_3):
@@ -103,10 +111,17 @@ def is_game_over(board):
     # If any of them are empty, they're clearly not a
     # winning row, so we skip them.
     if is_group_complete(board, group[0], group[1], group[2]):
-      if are_all_cells_the_same(board, group[0], group[1], group[2]):
+     if are_all_cells_the_same(board, group[0], group[1], group[2]):
+        print("You won!")
         return True # We found a winning row!
         # Note that return also stops the function
-  return False # If we get here, we didn't find a winning row
+  for row in board:
+    if all(column != "." for column in row):
+      continue
+    else:    
+      return False
+  print("It's a draw!")
+  return True # If we get here, we didn't find a winning row
 
 # And test it out:
 
