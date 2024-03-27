@@ -40,6 +40,7 @@ print("  " + my_dictionary["List"])
 # print out the value below.
 
 print("A Dictionary is:")
-# ...
+my_dictionary["Dictionary"] = "A sequence of key/value pairs"
+print(" " + my_dictionary["Dictionary"])
 
 # Once you're done, move on to 038_dict_operations.py
